@@ -22,24 +22,23 @@ while choice ~= 1
            choice = menu('Choose an option', 'Exit Program', 'Load Image Set','Add Image to Set',...
     'Sort Images', 'Display Image Sets');
         case 2
-            if ~exist('imgs.mat')
-                % Load images and store in array
-                image_files = dir('./images');
-                imgs = {};
-                for i = 3:length(image_files)
-                    imgs(i-2) = {imread(strcat('./images/', image_files(i).name))};
-                end
-                save('imgs');
-            else
-                load('imgs')
+            % Load images and store in array
+            image_files = dir('./images');
+            imgs = {};
+            for i = 3:length(image_files)
+                % saves the paths to the images
+                imgs(i-2) = {strcat('./images/', image_files(i).name)};
             end
        case 3
            % Add image to set
-           
+           prompt = "What is the path to the image you wish to add? If not in current folder, start input with './' to change folder path: ";
+           new_img = input(prompt);
+           imgs(end+1) = {strcat(new_img)};
            
        case 4
-           % Sort images
-
+           % Sort images, order of sorted_imgs cell array must correspond
+           % to Display menu option
+           sorted_imgs = sort_images(imgs);
               
        case 5
            % Display sets
@@ -53,6 +52,15 @@ while choice ~= 1
                     'Display Cars', 'Display Skies', 'Display Flowers');
                case 1
                    % display outdoor scenes
+                   prompt = 'Save output image? Yes or No.';
+                   save_answer = input(prompt);
+                   if strcmp(save_answer, 'Yes')
+                       save_output = true;
+                   else
+                       save_output = false;
+                   end
+                   plot_title = 'Outdoor-Scenes';
+                   display_cluster(sorted_imgs{1}, plot_title, save_output)
                case 2
                    % display portraits
                case 3
