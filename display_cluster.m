@@ -5,12 +5,15 @@ function display_cluster(img_cluster, plot_title, save)
     x = ceil(sqrt(num_images));
     y = ceil(num_images/x);
     fig1 = figure;
+    images = {};
     for i = 1:num_images
-        subplot(x,y,i)
+        %subplot(x,y,i)
         image = imread(img_cluster{i});
-        imshow(image);
+        images(i) = {image}; 
+        %imshow(image);
     end
-    sgtitle(plot_title)
+    montage(images)
+    title(plot_title)
 
     if save
         filename = strcat('./clustered_images/', plot_title, '.jpg');

@@ -32,7 +32,7 @@ while choice ~= 1
        case 3
            % Add image to set
            prompt = "What is the path to the image you wish to add? If not in current folder, start input with './' to change folder path: ";
-           new_img = input(prompt);
+           new_img = input(prompt,"s");
            imgs(end+1) = {strcat(new_img)};
            
        case 4
@@ -63,14 +63,59 @@ while choice ~= 1
                    display_cluster(sorted_imgs{1}, plot_title, save_output)
                case 2
                    % display portraits
+                   prompt = 'Save output image? Yes or No: ';
+                   save_answer = input(prompt, "s");
+                   if strcmp(save_answer, 'Yes')
+                       save_output = true;
+                   else
+                       save_output = false;
+                   end
+                   plot_title = 'Portraits';
+                   display_cluster(sorted_imgs{2}, plot_title, save_output)
                case 3
                    % display text documents
+                   prompt = 'Save output image? Yes or No: ';
+                   save_answer = input(prompt, "s");
+                   if strcmp(save_answer, 'Yes')
+                       save_output = true;
+                   else
+                       save_output = false;
+                   end
+                   plot_title = 'Text';
+                   display_cluster(sorted_imgs{3}, plot_title, save_output)
                case 4
                    % display cars
+                   prompt = 'Save output image? Yes or No: ';
+                   save_answer = input(prompt, "s");
+                   if strcmp(save_answer, 'Yes')
+                       save_output = true;
+                   else
+                       save_output = false;
+                   end
+                   plot_title = 'Images with Cars';
+                   display_cluster(sorted_imgs{4}, plot_title, save_output)
                case 5
                    % display skies
+                   prompt = 'Save output image? Yes or No: ';
+                   save_answer = input(prompt, "s");
+                   if strcmp(save_answer, 'Yes')
+                       save_output = true;
+                   else
+                       save_output = false;
+                   end
+                   plot_title = 'Images with Skies';
+                   display_cluster(sorted_imgs{5}, plot_title, save_output)
                case 6
                    % display flowers
+                   prompt = 'Save output image? Yes or No: ';
+                   save_answer = input(prompt, "s");
+                   if strcmp(save_answer, 'Yes')
+                       save_output = true;
+                   else
+                       save_output = false;
+                   end
+                   plot_title = 'Images with Flowers';
+                   display_cluster(sorted_imgs{6}, plot_title, save_output)
            end
    end
    % Display menu again and get user's choice
