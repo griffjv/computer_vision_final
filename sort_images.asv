@@ -24,12 +24,9 @@ outdoor_imgs = image_cell_array(index);
 index = find(clustered_imgs == 2);
 portrait_imgs = image_cell_array(index);
 
-index = find(clustered_imgs == 3);
-skies = image_cell_array(index);
-
-index = find(clustered_imgs == 4);
-flowers = image_cell_array(index);
-
+portrait_imgs = {};
+skies = {};
+flowers = {};
 % ADD MORE CATEGORIES
 sorted_image_arrays = {outdoor_imgs, portrait_imgs, skies, flowers};
 

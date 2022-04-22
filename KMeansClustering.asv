@@ -25,6 +25,13 @@ function idx = KMeansClustering(X, k, centers)
     end
     m = size(X, 1);
     n = size(X, 2);
+    
+    % If we are going to display the clusters graphically then create a
+    % figure in which to draw the visualization.
+    figHandle = [];
+    if n == 2 && visualize2D
+        figHandle = figure;
+    end
 
     
     % If initial cluster centers were not provided then initialize cluster
@@ -74,7 +81,7 @@ function idx = KMeansClustering(X, k, centers)
         %                                                                     %
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         for pointidx = 1 : m
-            min_dist = inf;
+            min_dist = 100000000;
             min_center = 0;
             for center = 1 : k
                 point = X(pointidx, :);

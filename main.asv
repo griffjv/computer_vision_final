@@ -52,8 +52,8 @@ while choice ~= 1
                     'Display Cars', 'Display Skies', 'Display Flowers');
                case 1
                    % display outdoor scenes
-                   prompt = 'Save output image? Yes or No: ';
-                   save_answer = input(prompt, "s");
+                   prompt = 'Save output image? Yes or No.';
+                   save_answer = input(prompt);
                    if strcmp(save_answer, 'Yes')
                        save_output = true;
                    else
