@@ -42,14 +42,14 @@ while choice ~= 1
               
        case 5
            % Display sets
-           choice2 = menu('Choose an option','Display Outdoor Scenes', 'Display Portraits', 'Display Text Documents', ...
-    'Display Cars', 'Display Skies', 'Display Flowers'); 
+           choice2 = menu('Choose an option', 'Rocky Beach', 'Grass-like Hills', 'Green Mountains', ...
+                    'Dark Images (black & white and night time)', 'Shrubbery'); 
            switch choice2
                case 0
                     disp('Error - please choose one of the options.')
            % Display a menu and get a choice
-                    choice2 = menu('Choose an option', 'Display Outdoor Scenes', 'Display Portraits', 'Display Text Documents', ...
-                    'Display Cars', 'Display Skies', 'Display Flowers');
+                    choice2 = menu('Choose an option', 'Rocky Beach', 'Grass-like Hills', 'Green Mountains', ...
+                    'Dark Images (black & white and night time)', 'Shrubbery');
                case 1
                    % display outdoor scenes
                    prompt = 'Save output image? Yes or No: ';
@@ -59,7 +59,7 @@ while choice ~= 1
                    else
                        save_output = false;
                    end
-                   plot_title = 'Outdoor-Scenes';
+                   plot_title = 'Rocky Beach';
                    display_cluster(sorted_imgs{1}, plot_title, save_output)
                case 2
                    % display portraits
@@ -70,7 +70,7 @@ while choice ~= 1
                    else
                        save_output = false;
                    end
-                   plot_title = 'Portraits';
+                   plot_title = 'Grass-like Hills';
                    display_cluster(sorted_imgs{2}, plot_title, save_output)
                case 3
                    % display text documents
@@ -81,9 +81,9 @@ while choice ~= 1
                    else
                        save_output = false;
                    end
-                   plot_title = 'Text';
+                   plot_title = 'Green Mountains';
                    display_cluster(sorted_imgs{3}, plot_title, save_output)
-                   choice3 = menu('Choose an option','Display Skies', "Back to main menu"); 
+                   choice3 = menu('Choose an option','Classify on including Skies', "Back to main menu"); 
                    switch choice3
                        case 0
                            disp('Error - please choose one of the options.');
@@ -116,14 +116,14 @@ while choice ~= 1
                    else
                        save_output = false;
                    end
-                   plot_title = 'Images with Cars';
+                   plot_title = 'Dark Images (black & white and night time)';
                    display_cluster(sorted_imgs{4}, plot_title, save_output)
                    choice3 = menu('Choose an option','Display Skies', "Back to main menu"); 
                    switch choice3
                        case 0
                            disp('Error - please choose one of the options.');
                            % Display a menu and get a choice
-                           choice3 = menu('Choose an option','Display Skies', "Back to main menu");
+                           choice3 = menu('Choose an option','Display black & white vs dark clusters', "Back to main menu");
                        case 1
                            %adv sort
                            sorted_skies = sort_images_adv(sorted_imgs{4}, "bw")
@@ -134,9 +134,9 @@ while choice ~= 1
                            else
                                save_output = false;
                            end
-                           plot_title = 'Skies';
+                           plot_title = 'black & white';
                            display_cluster(sorted_skies{1}, plot_title, save_output)
-                           plot_title = 'No Skies';
+                           plot_title = 'night time';
                            display_cluster(sorted_skies{2}, plot_title, save_output)
 
                        case 2
@@ -152,19 +152,8 @@ while choice ~= 1
                    else
                        save_output = false;
                    end
-                   plot_title = 'Images with Skies';
+                   plot_title = 'Shrubbery';
                    display_cluster(sorted_imgs{5}, plot_title, save_output)
-               case 6
-                   % display flowers
-                   prompt = 'Save output image? Yes or No: ';
-                   save_answer = input(prompt, "s");
-                   if strcmp(save_answer, 'Yes')
-                       save_output = true;
-                   else
-                       save_output = false;
-                   end
-                   plot_title = 'Images with Flowers';
-                   display_cluster(sorted_imgs{6}, plot_title, save_output)
            end
    end
    % Display menu again and get user's choice
