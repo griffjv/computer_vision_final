@@ -8,10 +8,11 @@ all_image_features = [];
 % Image dimensions to compress to
 n = 20;
 m = 20;
-
+n2 = 128;
+m2 = 128;
 for i = 1:length(image_cell_array)
     img = imread(image_cell_array{i});
-    all_image_features(i,:) = extractFeatures(img, n, m);
+    all_image_features(i,:) = extractFeatures(img, n, m, n2, m2);
 end
 
 % Compress data using PCA
@@ -19,7 +20,14 @@ end
 % [~,compressed_image_features,~,~,~] = pca(all_image_features);
 compressed_image_features = all_image_features;
 % Perform k-means to sort images in clusters
-k = 20;
+k = 4;
+
+centers = zeros(k,size(compressed_image_features,2))
+centers(1,:) = compressed_image_features(strcmpi(image_cell_array, {'./images/IMG_20180713_143820.jpg'}))
+centers(1,:) = compressed_image_features(find(image_cell_array , "./images/20160706_121528.jpg"))
+centers(1,:) = compressed_image_features(find(image_cell_array , "./images/paris_general_000076.jpg"))
+centers(1,:) = compressed_image_features(find(image_cell_array , "./images/0105.jpg"))
+
 clustered_imgs = KMeansClustering(compressed_image_features, k);
 
 index = find(clustered_imgs == 1);

@@ -20,27 +20,38 @@ end
 % [~,compressed_image_features,~,~,~] = pca(all_image_features);
 compressed_image_features = all_image_features;
 % Perform k-means to sort images in clusters
-k = 5;
-clustered_imgs = KMeansClustering(compressed_image_features, k);
+k = 6;
+
+centers = zeros(k,size(compressed_image_features,2));
+centers(1,:) = compressed_image_features(strcmpi(image_cell_array, {'./images/IMG_20180713_143820.jpg'}), :);
+centers(2,:) = compressed_image_features(strcmpi(image_cell_array , {'./images/20160706_121528.jpg'}), :);
+centers(3,:) = compressed_image_features(strcmpi(image_cell_array , {'./images/paris_general_000061.jpg'}), :);
+centers(4,:) = compressed_image_features(strcmpi(image_cell_array , {'./images/0105.jpg'}), :);
+centers(5,:) = compressed_image_features(strcmpi(image_cell_array , {'./images/MVIMG_20180709_193040.jpg'}), :);
+
+clustered_imgs = KMeansClustering(compressed_image_features, k, centers);
 
 index = find(clustered_imgs == 1);
-outdoor_imgs = image_cell_array(index);
+rocky_imgs = image_cell_array(index);
 
 index = find(clustered_imgs == 2);
-portrait_imgs = image_cell_array(index);
+greenery_imgs = image_cell_array(index);
 
 index = find(clustered_imgs == 3);
-skies = image_cell_array(index);
+traveling = image_cell_array(index);
 
 index = find(clustered_imgs == 4);
-flowers = image_cell_array(index);
+bw = image_cell_array(index);
 
 
 index = find(clustered_imgs == 5);
-others = image_cell_array(index);
+shrubbery = image_cell_array(index);
+
+% index = find(clustered_imgs == 6);
+% greenmountain = image_cell_array(index);
 
 % ADD MORE CATEGORIES
-sorted_image_arrays = {outdoor_imgs, portrait_imgs, skies, flowers, others};
+sorted_image_arrays = {rocky_imgs, greenery_imgs, traveling, bw, shrubbery};
 
 end
 

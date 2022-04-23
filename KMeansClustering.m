@@ -60,7 +60,7 @@ function idx = KMeansClustering(X, k, centers)
     % If the assignments of points to clusters have not converged after
     % performing MAX_ITER iterations then we will break and just return the
     % current cluster assignments.
-    MAX_ITER = 100;
+    MAX_ITER = 300;
     
     while true        
         % Store old cluster assignments

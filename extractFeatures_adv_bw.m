@@ -1,4 +1,4 @@
-function featureVector = extractFeatures(img, n, m, n2, m2)
+function featureVector = extractFeatures_adv_bw(img, n, m, n2, m2)
     imgresize = imresize(img,[n m]);
     
     % compress brightness to one layer
@@ -70,7 +70,7 @@ function featureVector = extractFeatures(img, n, m, n2, m2)
     std_text = std(mag, 1, 'all');
     featureVector(end+1) = avg_text;
     featureVector(end+1) = std_text;
-
-    featureVector(end+1) = sum(imgresize(,:3))
+    
     % add shape feature maybe
+    featureVector(end+1) = 1000 * ndims(imgresize); 
 end
